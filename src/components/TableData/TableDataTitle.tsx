@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext, SyntheticEvent } from 'react';
+import React, { SyntheticEvent } from 'react';
 import type { FC } from 'react';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import { CustomLink, TableCell } from 'common/styles';
 
 interface TableDataTitleProps {
-  key: string | undefined;
+  id: string | undefined;
   thumbnailUrl: string;
   summary: string;
   expireState: boolean;
@@ -14,12 +14,12 @@ interface TableDataTitleProps {
 const EXPIRED = '유효기간 만료';
 
 const TableDataTitle: FC<TableDataTitleProps> = ({
-  key,
+  id,
   thumbnailUrl,
   summary,
   expireState,
 }) => {
-  const copyUrl = `${window.location.href}${key}`;
+  const copyUrl = `${window.location.href}${id}`;
 
   const handleImgError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement;
@@ -39,7 +39,7 @@ const TableDataTitle: FC<TableDataTitleProps> = ({
       <LinkInfo>
         <CustomLink
           to={{
-            pathname: `/${key}`,
+            pathname: `/${id}`,
           }}
         >
           <LinkImage>
@@ -55,7 +55,7 @@ const TableDataTitle: FC<TableDataTitleProps> = ({
         <LinkTexts>
           <CustomLink
             to={{
-              pathname: `/${key}`,
+              pathname: `/${id}`,
             }}
           >
             <LinkTitle>{summary}</LinkTitle>
@@ -80,6 +80,11 @@ export default TableDataTitle;
 const LinkInfo = styled.div`
   display: flex;
   align-items: center;
+  @media (max-width: 768px) {
+    & + & {
+      margin-left: 8px;
+    }
+  }
 `;
 
 const LinkImage = styled.div`

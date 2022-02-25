@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext, SyntheticEvent } from 'react';
+import React from 'react';
 import type { FC } from 'react';
 import styled from 'styled-components';
 import colors from 'styles/colors';
-import fileSize from 'filesize';
-import { DataInterface } from 'common/interface';
-import { useDataState } from 'contextAPI';
 import { TableCell, TableRow } from 'common/styles';
+import { useDataState } from 'contextAPI';
 import TableData from 'components/TableData';
+
+const CELLTITLE = ['제목', '파일개수', '파일사이즈', '유효기간', '받은사람'];
 
 const LinkPage: FC = () => {
   const datas = useDataState();
@@ -17,11 +17,14 @@ const LinkPage: FC = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell textAlign="left">제목</TableCell>
-            <TableCell>파일개수</TableCell>
-            <TableCell>크기</TableCell>
-            <TableCell>유효기간</TableCell>
-            <TableCell>받은사람</TableCell>
+            {CELLTITLE.map((text, index) => (
+              <TableCell
+                key={text + index}
+                textAlign={index === 0 ? 'left' : 'center'}
+              >
+                {text}
+              </TableCell>
+            ))}
           </TableRow>
         </TableHead>
 
