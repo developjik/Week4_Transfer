@@ -30,14 +30,10 @@ export const TableCell = styled.th<TableCellProps>`
   vertical-align: inherit;
   border-bottom: 1px solid ${colors.grey300};
   text-align: ${({ textAlign }) => textAlign || 'center'};
-  border: 2px solid ${colors.grey200};
   padding: 16px;
   ${({ receiver }) => receiver && `max-width: 150px;`}
-<<<<<<< HEAD
-=======
   @media (max-width: 768px) {
     border: none;
     ${({ receiver }) => receiver && `max-width: 100%;`}
   }
->>>>>>> 6ae4ff5783058c89a2b3893f5844cf5014dd123d
 `;
